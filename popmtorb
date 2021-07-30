@@ -1,6 +1,6 @@
 #!/bin/bash
 
-dir=/usr/local/bin/
+dir=/usr/bin/
 
 jar_name=POPMToRhythmBox.jar
 
