@@ -50,3 +50,17 @@ jar cvf POPMToRhythmBox.jar POPMToRB.class ID3Reader.class Rating.class &> /dev/
 #move the jars
 sudo cp RhythmBoxToPOPM.jar /usr/bin/
 sudo cp POPMToRhythmBox.jar /usr/bin/
+
+#final checks and notifs! >o<
+if ! [ java ]; then
+	was_crit_error=1
+	echo -e "⛔ java not found in path\n" 
+fi
+
+if [ $was_crit_error ]; then
+	echo "💔 could not build"
+elif [ $was_error ]; then
+	echo "⚠️  there was a problem, building anyway"
+else
+	echo "💖 build finished!"
+fi
