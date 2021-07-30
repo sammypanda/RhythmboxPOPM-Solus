@@ -1,5 +1,5 @@
 # RhythmboxPOPM
-Scripts for dealing with POPM ID3 frames and Rhythmbox.
+Scripts for dealing with POPM ID3 frames and Rhythmbox - Implemented for Solus.
 
 As is well known, RB uses XML database to store its music files, together with rating. However, it does not read the ID3 rating frame of a music file, if it exists, making it harder for people transferring rated music from other player to this one (for example when switching from Windows to Linux). These scripts are trying to make that easier.
 
