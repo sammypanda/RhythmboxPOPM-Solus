@@ -1,6 +1,12 @@
 #!/bin/bash
 
+python=`command -v pip3`
+
 #dependencies
+if ! [ $python ]; then
+    echo -e "installing python3 & pip3"
+    sudo eopkg install python3 &> /dev/null
+fi
 sudo apt install libimage-exiftool-perl
 sudo apt-get install eyed3
 
