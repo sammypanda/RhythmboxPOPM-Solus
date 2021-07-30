@@ -43,9 +43,10 @@ sudo cp popmtorb /usr/bin
 sudo chmod +x /usr/bin/popmtorb
 
 #compile the jars
+echo -e "☕ compiling and sending the jars to /usr/bin\n"
 javac RBToPOPM.java POPMToRB.java ID3Reader.java Rating.java
 jar cvf RhythmBoxToPOPM.jar RBToPOPM.class
 jar cvf POPMToRhythmBox.jar POPMToRB.class ID3Reader.class Rating.class
 #move the jars
-sudo cp RhythmBoxToPOPM.jar /usr/local/bin/
-sudo cp POPMToRhythmBox.jar /usr/local/bin/
+sudo cp RhythmBoxToPOPM.jar /usr/bin/
+sudo cp POPMToRhythmBox.jar /usr/bin/
