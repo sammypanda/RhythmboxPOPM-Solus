@@ -1,21 +1,36 @@
 #!/bin/bash
-
+#vars
 python=`command -v pip3`
+
+#generic
+msg_installing() {
+	echo -e "🚧 installing $1\n"
+}
+
+msg_installed() {
+	echo -e "✅ $1 already installed\n"
+}
 
 #dependencies
 if ! [ $python ]; then
-    echo -e "installing python3 & pip3"
+    msg_installing "python3 & pip3"
     sudo eopkg install python3 &> /dev/null
+else
+	msg_installed "python3 & pip"
 fi
 
 if ! [ exiftool ]; then
-    echo -e "installing exiftool"
-    sudo eopkg install perl-image-exiftool
+    msg_installing "exiftool"
+    sudo eopkg install perl-image-exiftool &> /dev/null
+else
+	msg_installed "exiftool"
 fi
 
 if ! [ eyeD3 ]; then
-	echo -e "installing eyeD3"
-	pip3 install eyeD3
+	msg_installing "eyeD3"
+	pip3 install eyeD3 &> /dev/null
+else
+	msg_installed "eyeD3"
 fi
 
 #move the startups
