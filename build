@@ -1,6 +1,4 @@
 #!/bin/bash
-#vars
-python=`command -v pip3`
 
 #generic
 msg_installing() {
@@ -46,15 +44,6 @@ echo -e "🗑️  sending 'popmtorb' to /usr/bin\n"
 sudo cp popmtorb /usr/bin
 sudo chmod +x /usr/bin/popmtorb
 
-#compile the jars
-echo -e "☕ compiling and sending the jars to /usr/bin\n"
-javac RBToPOPM.java POPMToRB.java ID3Reader.java Rating.java &> /dev/null
-jar cvf RhythmBoxToPOPM.jar RBToPOPM.class &> /dev/null
-jar cvf POPMToRhythmBox.jar POPMToRB.class ID3Reader.class Rating.class &> /dev/null
-#move the jars
-sudo cp RhythmBoxToPOPM.jar /usr/bin/
-sudo cp POPMToRhythmBox.jar /usr/bin/
-
 #final checks and notifs! >o<
 if ! command -v java &> /dev/null; then
 	was_crit_error=1
@@ -71,6 +60,16 @@ if [ $was_crit_error ]; then
 	exit
 elif [ $was_error ]; then
 	echo "⚠️  there was a problem, building anyway"
-else
-	echo "💖 build finished!"
 fi
+
+#compile the jars
+echo -e "☕ compiling and sending the jars to /usr/bin\n"
+javac RBToPOPM.java POPMToRB.java ID3Reader.java Rating.java &> /dev/null
+jar cvf RhythmBoxToPOPM.jar RBToPOPM.class &> /dev/null
+jar cvf POPMToRhythmBox.jar POPMToRB.class ID3Reader.class Rating.class &> /dev/null
+#move the jars
+sudo cp RhythmBoxToPOPM.jar /usr/bin/
+sudo cp POPMToRhythmBox.jar /usr/bin/
+
+echo "💖 build finished!"
+
