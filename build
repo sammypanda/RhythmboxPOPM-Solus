@@ -12,23 +12,27 @@ msg_installed() {
 }
 
 #dependencies
-if ! [ $python ]; then
-    msg_installing "python3 & pip3"
-    sudo eopkg install python3 &> /dev/null
+if ! command -v pip3 &> /dev/null; then
+        msg_installing "python3 & pip3"
+        sudo eopkg install python3
+	echo -e
 else
 	msg_installed "python3 & pip"
+	echo -e
 fi
 
-if ! [ exiftool ]; then
-    msg_installing "exiftool"
-    sudo eopkg install perl-image-exiftool &> /dev/null
+if ! command -v exiftool &> /dev/null; then
+        msg_installing "exiftool"
+        sudo eopkg install perl-image-exiftool
+	echo -e
 else
 	msg_installed "exiftool"
 fi
 
-if ! [ eyeD3 ]; then
+if ! command -v eyeD3 &> /dev/null; then
 	msg_installing "eyeD3"
-	pip3 install eyeD3 &> /dev/null
+	pip3 install eyeD3
+	echo -e
 else
 	msg_installed "eyeD3"
 fi
@@ -52,13 +56,19 @@ sudo cp RhythmBoxToPOPM.jar /usr/bin/
 sudo cp POPMToRhythmBox.jar /usr/bin/
 
 #final checks and notifs! >o<
-if ! [ java ]; then
+if ! command -v java &> /dev/null; then
 	was_crit_error=1
 	echo -e "⛔ java not found in path\n" 
 fi
 
+if ! command -v javac &> /dev/null; then
+	was_crit_error=1
+	echo -e "⛔ javac not found in path\n"
+fi
+
 if [ $was_crit_error ]; then
 	echo "💔 could not build"
+	exit
 elif [ $was_error ]; then
 	echo "⚠️  there was a problem, building anyway"
 else
